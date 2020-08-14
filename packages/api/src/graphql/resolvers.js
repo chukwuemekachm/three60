@@ -1,11 +1,14 @@
 import merge from 'lodash/merge'
 
 import { userResolvers } from './user'
+import { todoResolvers } from './todo'
 
 const Query = {
   info: () => 'three60 is still a work in progress'
 }
 
-const resolvers = { Query }
+const Mutation = {}
 
-export default merge({}, resolvers, userResolvers)
+const resolvers = { Query, Mutation }
+
+export default merge({}, resolvers, userResolvers, todoResolvers)

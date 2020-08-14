@@ -2,7 +2,13 @@ import { isAuthenticated } from './rules';
 
 const permissions = {
   Query: {
-    me: isAuthenticated
+    me: isAuthenticated,
+    getTodos: isAuthenticated,
+    getTodo: isAuthenticated
+  },
+  Mutation: {
+    createTodo: isAuthenticated,
+    updateTodo: isAuthenticated
   }
 }
 

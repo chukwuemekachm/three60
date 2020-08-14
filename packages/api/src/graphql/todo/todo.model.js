@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const STATUS_ENUM = ['BACKLOG', 'IN PROGRESS', 'FINISHED', 'TRASH']
+const STATUS_ENUM = ['BACKLOG', 'IN_PROGRESS', 'FINISHED', 'TRASH']
 
 const todoSchema = new mongoose.Schema({
   title: {
@@ -18,7 +18,7 @@ const todoSchema = new mongoose.Schema({
       },
       status: {
         type: String,
-        enum: STATUS_ENUM,
+        enum: STATUS_ENUM.slice(0, 3),
         default: STATUS_ENUM[0],
         uppercase: true
       }

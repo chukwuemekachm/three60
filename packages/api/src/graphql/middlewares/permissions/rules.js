@@ -1,6 +1,6 @@
 import { AuthenticationError } from 'apollo-server-core'
 
-import { decodeToken } from '../../helpers/jwt_helper'
+import { decodeToken } from '../../../helpers/jwt_helper'
 
 export function isAuthenticated(resolve, parent, args, context, info) {
   try {

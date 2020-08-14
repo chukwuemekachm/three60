@@ -1,9 +1,9 @@
 import bcrypt from 'bcryptjs'
-import { AuthenticationError } from 'apollo-server-core';
+import { AuthenticationError } from 'apollo-server-core'
 
-import { generateToken } from '../helpers/jwt_helper';
-import { validatePayload, signUpSchema, loginSchema } from '../validators'
-import DuplicateInputError from '../custom_errors/DuplicateInputError'
+import { generateToken } from '../../helpers/jwt_helper'
+import { validatePayload, signUpSchema, loginSchema } from '../../validators'
+import DuplicateInputError from '../../custom_errors/DuplicateInputError'
 
 async function signUp(_, { input }, { models }) {
   await validatePayload({ payload: input, schema: signUpSchema })
@@ -51,6 +51,12 @@ async function getUserInfo(_, __, { models, user }) {
   return userInfo
 }
 
+async function getUserTodos(root, __, { models }) {
+  const userTodos = await models.Todo.find({ userId: root.id }).exec()
+
+  return userTodos
+}
+
 export const userResolvers = {
   Query: {
     me: getUserInfo
@@ -58,5 +64,8 @@ export const userResolvers = {
   Mutation: {
     signUp,
     login
+  },
+  User: {
+    todos: getUserTodos
   }
 }

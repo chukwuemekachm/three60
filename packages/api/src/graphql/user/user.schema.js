@@ -38,6 +38,7 @@ export const userTypeDefs = gql`
     avatarURL: String
     status: UserStatus!
     role: UserRole!
+    todos: [Todo]!
     createdAt: String!
     updateAt: String!
   }

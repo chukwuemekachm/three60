@@ -27,7 +27,7 @@ linkFolderSchema.index({
 })
 
 linkFolderSchema.pre('remove', async function () {
-  await Link.deleteMany({ folderId: this._id })
+  await Link.deleteMany({ folderId: this.id })
 })
 
 export default mongoose.model('linkFolder', linkFolderSchema)

@@ -1,10 +1,21 @@
 import { gql } from 'apollo-server-express'
 
 import { userTypeDefs } from './user'
+import { todoTypeDefs } from './todo'
 
 const typeDefs = gql`
+  input CreateTagInput {
+    title: String!
+    color: String
+  }
+
+  input UpdateTagInput {
+    title: String
+    color: String
+  }
+
   type Tag {
-    title:  String!
+    title: String!
     color: String
   }
 
@@ -13,8 +24,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    info: String!
+    info: String
   }
 `
 
-export default [typeDefs, userTypeDefs]
+export default [typeDefs, userTypeDefs, todoTypeDefs]
