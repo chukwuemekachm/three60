@@ -1,4 +1,4 @@
-import { isAuthenticated } from './rules';
+import { isAuthenticated } from './rules'
 
 const permissions = {
   Query: {
@@ -8,7 +8,8 @@ const permissions = {
   },
   Mutation: {
     createTodo: isAuthenticated,
-    updateTodo: isAuthenticated
+    updateTodo: isAuthenticated,
+    deleteTodo: isAuthenticated
   }
 }
 

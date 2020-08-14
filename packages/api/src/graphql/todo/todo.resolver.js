@@ -79,6 +79,17 @@ async function updateTodo(_, { todoId, input }, { user, models }) {
   throw new NotFoundError('Todo not found')
 }
 
+async function deleteTodo(_, { todoId }, { user, models }) {
+  const todo = await models.Todo.findById(todoId).exec()
+
+  if (todo && String(todo.userId) === String(user.id)) {
+    await models.Todo.deleteOne({ _id: todo.id })
+    return todoId
+  }
+
+  throw new NotFoundError('Todo not found')
+}
+
 async function getSingleTodo(_, { input }, { user, models }) {
   const todo = await models.Todo.findOne({ ...input, userId: user.id }).exec()
 
@@ -108,7 +119,8 @@ export const todoResolvers = {
   },
   Mutation: {
     createTodo,
-    updateTodo
+    updateTodo,
+    deleteTodo
   },
   Todo: {
     owner: getTodoOwner

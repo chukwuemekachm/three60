@@ -22,7 +22,7 @@ const graphqlServer = new ApolloServer({
     models,
   }),
   debug: !isProduction,
-  playground: true
+  playground: !isProduction
 });
 
 export default graphqlServer

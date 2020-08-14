@@ -8,6 +8,11 @@ export const todoTypeDefs = gql`
     TRASH
   }
 
+  enum CreateTodoStatus {
+    BACKLOG
+    IN_PROGRESS
+  }
+
   enum TodoItemStatus {
     BACKLOG
     IN_PROGRESS
@@ -26,7 +31,7 @@ export const todoTypeDefs = gql`
   input CreateTodoInput {
     title: String!
     description: String
-    status: TodoStatus
+    status: CreateTodoStatus
     items: [CreateTodoItemInput]
     tags: [CreateTagInput]
   }
@@ -69,5 +74,6 @@ export const todoTypeDefs = gql`
   extend type Mutation {
     createTodo(input: CreateTodoInput!): Todo!
     updateTodo(todoId: String!, input: UpdateTodoInput): Todo!
+    deleteTodo(todoId: String!): String!
   }
 `
