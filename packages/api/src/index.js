@@ -39,20 +39,20 @@ app.use(routes)
 
 // Error Handler
 app.use(
-  (error, _, response, __) =>
-    response.status(500).json({
-      message: 'Internal server error',
-      error: isProduction ? null : error
-    })
+  // eslint-disable-next-line no-unused-vars
+  (error, request, response, next) => response.status(500).json({
+    message: 'Internal server error',
+    error: isProduction ? null : error
+  })
 )
 
 connect('mongodb://localhost:27017/three60')
   .then(() => {
     app.listen(PORT, () => {
-      console.log(`Server is listening on port ${PORT}`)
-      console.log(`GraphQL endpoint is ${graphqlServer.graphqlPath}`)
+      console.info(`Server is listening on port ${PORT}`)
+      console.info(`GraphQL endpoint is ${graphqlServer.graphqlPath}`)
     })
   })
-  .catch(err => console.log('Error connecting to Mongo: ', err))
+  .catch((err) => console.info('Error connecting to Mongo: ', err))
 
 export default app

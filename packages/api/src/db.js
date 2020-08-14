@@ -6,6 +6,8 @@ import LinkFolder from './graphql/link_folder/link_folder.model'
 import Note from './graphql/note/note.model'
 import Todo from './graphql/todo/todo.model'
 
+const { POOL_SIZE = 10 } = process.env;
+
 export const models = {
   User,
   Link,
@@ -14,10 +16,10 @@ export const models = {
   Todo
 }
 
-export function connect(URL) {
-  return mongoose.connect(URL, {
+export function connect(URI) {
+  return mongoose.connect(URI, {
     useNewUrlParser: true,
-    poolSize: 10,
+    poolSize: POOL_SIZE,
     useUnifiedTopology: true,
     useCreateIndex: true
   })
