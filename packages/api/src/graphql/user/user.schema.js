@@ -42,6 +42,10 @@ export const userTypeDefs = gql`
     updateAt: String!
   }
 
+  extend type Query {
+    me: User!
+  }
+
   extend type Mutation {
     signUp(input: UserSignUpInput!): UserAuthResponse!
     login(input: UserLoginInput!): UserAuthResponse!

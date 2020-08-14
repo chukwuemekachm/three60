@@ -45,7 +45,16 @@ async function login(_, { input }, { models }) {
   throw new AuthenticationError('Invaild credentials')
 }
 
+async function getUserInfo(_, __, { models, user }) {
+  const userInfo = await models.User.findById(user.id).exec()
+
+  return userInfo
+}
+
 export const userResolvers = {
+  Query: {
+    me: getUserInfo
+  },
   Mutation: {
     signUp,
     login
