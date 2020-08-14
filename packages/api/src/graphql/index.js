@@ -7,7 +7,7 @@ import middlewares from './middlewares'
 import { models } from '../db'
 
 const { NODE_ENV } = process.env
-const isProduction = NODE_ENV === 'production' ? true : false
+const isProduction = NODE_ENV === 'production'
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers

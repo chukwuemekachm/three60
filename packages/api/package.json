@@ -8,6 +8,7 @@
     "start:dev": "nodemon --exec babel-node --presets=@babel/preset-env -- src/index.js"
   },
   "dependencies": {
+    "apollo-server-core": "^2.16.1",
     "apollo-server-express": "^2.4.8",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
@@ -18,7 +19,8 @@
     "helmet": "^4.0.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.20",
-    "mongoose": "^5.9.29"
+    "mongoose": "^5.9.29",
+    "validatorjs": "^3.18.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",

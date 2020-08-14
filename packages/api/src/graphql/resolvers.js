@@ -1,9 +1,11 @@
+import merge from 'lodash/merge'
+
+import { userResolvers } from './user'
+
 const Query = {
-  info: () => {
-    return 'three60 is still a work in progress'
-  }
+  info: () => 'three60 is still a work in progress'
 }
 
-export default {
-  Query
-}
+const resolvers = { Query }
+
+export default merge({}, resolvers, userResolvers)

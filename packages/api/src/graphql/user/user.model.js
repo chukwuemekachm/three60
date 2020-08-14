@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import mongoose from 'mongoose'
 
 import LinkFolder from '../link_folder/link_folder.model'
@@ -26,6 +27,9 @@ const userSchema = new mongoose.Schema({
   facebookId: {
     type: String
   },
+  avatarURL: {
+    type: String
+  },
   tags: [
     {
       title: {
@@ -39,7 +43,7 @@ const userSchema = new mongoose.Schema({
   ],
   status: {
     type: String,
-    enum: ['IN ACTIVE', 'ACTIVE'],
+    enum: ['IN_ACTIVE', 'ACTIVE'],
     default: 'ACTIVE',
     uppercase: true
   },
