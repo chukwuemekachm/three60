@@ -2,6 +2,7 @@ import { gql } from 'apollo-server-express'
 
 import { userTypeDefs } from './user'
 import { todoTypeDefs } from './todo'
+import { noteTypeDefs } from './note'
 
 const typeDefs = gql`
   input CreateTagInput {
@@ -10,7 +11,7 @@ const typeDefs = gql`
   }
 
   input UpdateTagInput {
-    title: String
+    title: String!
     color: String
   }
 
@@ -28,4 +29,9 @@ const typeDefs = gql`
   }
 `
 
-export default [typeDefs, userTypeDefs, todoTypeDefs]
+export default [
+  typeDefs,
+  userTypeDefs,
+  todoTypeDefs,
+  noteTypeDefs
+]

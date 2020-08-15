@@ -44,8 +44,14 @@ export const todoTypeDefs = gql`
     tags: [CreateTagInput]
   }
 
+  input FetchTodosInput {
+    title: String
+    description: String
+    status: TodoStatus
+  }
+
   input FetchSingleTodoInput {
-    id: String
+    id: ID
     title: String
     description: String
     status: TodoStatus
@@ -64,16 +70,18 @@ export const todoTypeDefs = gql`
     items: [TodoItem]!
     tags: [Tag]!
     owner: User!
+    createdAt: String!
+    updateAt: String!
   }
 
   extend type Query {
-    getTodos(input: FetchSingleTodoInput): [Todo]!
-    getTodo(input: FetchSingleTodoInput): Todo
+    getTodos(input: FetchTodosInput): [Todo]!
+    getSingleTodo(input: FetchSingleTodoInput): Todo
   }
 
   extend type Mutation {
     createTodo(input: CreateTodoInput!): Todo!
-    updateTodo(todoId: String!, input: UpdateTodoInput): Todo!
-    deleteTodo(todoId: String!): String!
+    updateTodo(todoId: ID!, input: UpdateTodoInput): Todo!
+    deleteTodo(todoId: ID!): ID!
   }
 `

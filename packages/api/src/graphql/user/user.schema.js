@@ -39,6 +39,7 @@ export const userTypeDefs = gql`
     status: UserStatus!
     role: UserRole!
     todos: [Todo]!
+    notes: [Note]!
     createdAt: String!
     updateAt: String!
   }

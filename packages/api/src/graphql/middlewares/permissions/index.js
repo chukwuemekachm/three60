@@ -4,12 +4,17 @@ const permissions = {
   Query: {
     me: isAuthenticated,
     getTodos: isAuthenticated,
-    getTodo: isAuthenticated
+    getSingleTodo: isAuthenticated,
+    getNotes: isAuthenticated,
+    getSingleNote: isAuthenticated
   },
   Mutation: {
     createTodo: isAuthenticated,
     updateTodo: isAuthenticated,
-    deleteTodo: isAuthenticated
+    deleteTodo: isAuthenticated,
+    createNote: isAuthenticated,
+    updateNote: isAuthenticated,
+    deleteNote: isAuthenticated
   }
 }
 
