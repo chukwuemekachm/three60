@@ -46,7 +46,7 @@ app.use(
   })
 )
 
-connect('mongodb://localhost:27017/three60')
+connect()
   .then(() => {
     app.listen(PORT, () => {
       console.info(`Server is listening on port ${PORT}`)

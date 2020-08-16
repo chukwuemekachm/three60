@@ -3,6 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "postinstall": "lerna ",
+    "start": "lerna run --parallel start",
+    "build": "lerna run --parallel build",
+    "test": "lerna run --parallel test",
+    "start:dev": "lerna run --parallel start:dev"
+  },
   "devDependencies": {
     "eslint": "^7.6.0",
     "eslint-config-airbnb-base": "^14.2.0",

@@ -5,7 +5,9 @@
   "license": "MIT",
   "scripts": {
     "build": "babel src -d build",
-    "start:dev": "nodemon --exec babel-node --presets=@babel/preset-env -- src/index.js"
+    "start:dev": "nodemon --exec babel-node --presets=@babel/preset-env -- src/index.js",
+    "prestart": "yarn build",
+    "start": "node build/index.js"
   },
   "dependencies": {
     "apollo-server-core": "^2.16.1",
