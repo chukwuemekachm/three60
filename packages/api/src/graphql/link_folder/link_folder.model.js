@@ -7,13 +7,9 @@ const linkFolderSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  links: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: 'user'
-    }
-  ],
+  description: {
+    type: String
+  },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
@@ -26,8 +22,9 @@ linkFolderSchema.index({
   name: 1,
 })
 
-linkFolderSchema.pre('remove', async function () {
-  await Link.deleteMany({ folderId: this.id })
+linkFolderSchema.pre('findOneAndRemove', async function preFindAndRemove() {
+  // eslint-disable-next-line no-underscore-dangle
+  await Link.deleteMany({ folderId: this._conditions._id })
 })
 
 export default mongoose.model('linkFolder', linkFolderSchema)

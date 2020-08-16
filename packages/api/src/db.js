@@ -6,7 +6,7 @@ import LinkFolder from './graphql/link_folder/link_folder.model'
 import Note from './graphql/note/note.model'
 import Todo from './graphql/todo/todo.model'
 
-const { POOL_SIZE = 10 } = process.env;
+const { POOL_SIZE = 10 } = process.env
 
 export const models = {
   User,
@@ -21,6 +21,7 @@ export function connect(URI) {
     useNewUrlParser: true,
     poolSize: POOL_SIZE,
     useUnifiedTopology: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useFindAndModify: false
   })
 }

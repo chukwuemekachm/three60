@@ -16,4 +16,6 @@ export async function validatePayload({ payload, schema }) {
 export * from './schemas/user_schemas'
 export * from './schemas/todo_schemas'
 export * from './schemas/note_schemas'
+export * from './schemas/link_folder_schemas'
+export * from './schemas/link_schemas'
 export default validatePayload

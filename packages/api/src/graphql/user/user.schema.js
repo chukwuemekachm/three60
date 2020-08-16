@@ -40,6 +40,8 @@ export const userTypeDefs = gql`
     role: UserRole!
     todos: [Todo]!
     notes: [Note]!
+    linkFolders: [LinkFolder!]!
+    links: [Link!]!
     createdAt: String!
     updateAt: String!
   }

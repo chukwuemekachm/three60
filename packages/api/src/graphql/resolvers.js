@@ -3,6 +3,8 @@ import merge from 'lodash/merge'
 import { userResolvers } from './user'
 import { todoResolvers } from './todo'
 import { noteResolvers } from './note'
+import { linkResolvers } from './link'
+import { linkFolderResolvers } from './link_folder'
 
 const Query = {
   info: () => 'three60 is still a work in progress'
@@ -17,5 +19,7 @@ export default merge(
   resolvers,
   userResolvers,
   todoResolvers,
-  noteResolvers
+  noteResolvers,
+  linkResolvers,
+  linkFolderResolvers
 )

@@ -3,7 +3,7 @@ export const createTodoSchema = {
   description: 'string|min:2|max:2000',
   status: 'string|in:BACKLOG,IN_PROGRESS',
   'tags.*.title': 'required|string|min:2|max:15',
-  'tags.*.color': 'string|min:4|max:7',
+  'tags.*.color': 'hex|size:6',
   'items.*.title': 'required|string|min:2|max:15'
 }
 

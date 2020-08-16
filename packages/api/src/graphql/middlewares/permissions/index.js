@@ -6,7 +6,11 @@ const permissions = {
     getTodos: isAuthenticated,
     getSingleTodo: isAuthenticated,
     getNotes: isAuthenticated,
-    getSingleNote: isAuthenticated
+    getSingleNote: isAuthenticated,
+    getLinkFolders: isAuthenticated,
+    getSingleLinkFolder: isAuthenticated,
+    getLinks: isAuthenticated,
+    getSingleLink: isAuthenticated
   },
   Mutation: {
     createTodo: isAuthenticated,
@@ -14,7 +18,13 @@ const permissions = {
     deleteTodo: isAuthenticated,
     createNote: isAuthenticated,
     updateNote: isAuthenticated,
-    deleteNote: isAuthenticated
+    deleteNote: isAuthenticated,
+    createLinkFolder: isAuthenticated,
+    updateLinkFolder: isAuthenticated,
+    deleteLinkFolder: isAuthenticated,
+    createLink: isAuthenticated,
+    updateLink: isAuthenticated,
+    deleteLink: isAuthenticated
   }
 }
 

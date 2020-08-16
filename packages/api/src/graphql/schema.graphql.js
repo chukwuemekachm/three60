@@ -3,6 +3,8 @@ import { gql } from 'apollo-server-express'
 import { userTypeDefs } from './user'
 import { todoTypeDefs } from './todo'
 import { noteTypeDefs } from './note'
+import { linkTypeDefs } from './link'
+import { linkFolderTypeDefs } from './link_folder'
 
 const typeDefs = gql`
   input CreateTagInput {
@@ -33,5 +35,7 @@ export default [
   typeDefs,
   userTypeDefs,
   todoTypeDefs,
-  noteTypeDefs
+  noteTypeDefs,
+  linkTypeDefs,
+  linkFolderTypeDefs
 ]

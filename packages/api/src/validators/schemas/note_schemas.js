@@ -2,7 +2,7 @@ export const createNoteSchema = {
   title: 'required|string|min:2|max:100',
   content: 'string|min:2|max:5000',
   'tags.*.title': 'required|string|min:2|max:15',
-  'tags.*.color': 'string|min:4|max:7'
+  'tags.*.color': 'hex|size:6'
 }
 
 export const updateNoteSchema = {

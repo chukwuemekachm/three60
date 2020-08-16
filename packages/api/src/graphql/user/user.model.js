@@ -1,9 +1,10 @@
 /* eslint-disable no-underscore-dangle */
 import mongoose from 'mongoose'
 
-import LinkFolder from '../link_folder/link_folder.model'
-import Note from '../note/note.model'
-import Todo from '../todo/todo.model'
+import { LinkFolder } from '../link_folder'
+import { Link } from '../link'
+import { Note } from '../note'
+import { Todo } from '../todo'
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -56,10 +57,11 @@ const userSchema = new mongoose.Schema({
   }
 }, { timestamps: true })
 
-userSchema.pre('remove', async function () {
-  await LinkFolder.deleteMany({ userId: this._id })
-  await Note.deleteMany({ userId: this._id })
-  await Todo.deleteMany({ userId: this._id })
+userSchema.pre('findOneAndRemove', async function preFindAndRemove() {
+  await Link.deleteMany({ userId: this._conditions._id })
+  await LinkFolder.deleteMany({ userId: this._conditions._id })
+  await Note.deleteMany({ userId: this._conditions._id })
+  await Todo.deleteMany({ userId: this._conditions._id })
 })
 
 export default mongoose.model('user', userSchema)

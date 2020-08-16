@@ -4,7 +4,7 @@ import { validatePayload, createTodoSchema, updateTodoSchema } from '../../valid
 import DuplicateInputError from '../../custom_errors/DuplicateInputError'
 import NotFoundError from '../../custom_errors/NotFoundError'
 import {
-  manageUserTags, getItemOwner, transformQueryFilters, deleteResource
+  manageUserTags, getItemOwner, deleteResource, getSingleResource, getResource,
 } from '../shared'
 
 async function createTodo(_, { input }, { user, models }) {
@@ -28,16 +28,16 @@ async function createTodo(_, { input }, { user, models }) {
   throw new DuplicateInputError(`You already have a todo ${input.title}`)
 }
 
-async function updateTodo(_, { todoId, input }, { user, models }) {
+async function updateTodo(_, { id, input }, { user, models }) {
   await validatePayload({ payload: input, schema: updateTodoSchema })
 
-  const todo = await models.Todo.findById(todoId).exec()
+  const todo = await models.Todo.findById(id).exec()
 
   if (todo && String(todo.userId) === String(user.id)) {
     const todoTitleExists = await models.Todo
       .findOne({ userId: user.id, title: input.title }).exec()
 
-    if (todoTitleExists && String(todo.id) !== String(todoId)) {
+    if (todoTitleExists && String(todo.id) !== String(id)) {
       throw new DuplicateInputError(`You already have a todo ${input.title}`)
     }
 
@@ -59,7 +59,7 @@ async function updateTodo(_, { todoId, input }, { user, models }) {
     }
 
     const updatedTodo = await models.Todo
-      .findByIdAndUpdate(todoId, inputToUpdate, { new: true }).exec()
+      .findByIdAndUpdate(id, inputToUpdate, { new: true }).exec()
 
     manageUserTags(user, tags, models)
 
@@ -69,32 +69,15 @@ async function updateTodo(_, { todoId, input }, { user, models }) {
   throw new NotFoundError('Todo not found')
 }
 
-async function getSingleTodo(_, { input }, { user, models }) {
-  const todo = await models.Todo
-    .findOne(transformQueryFilters({ ...input, userId: user.id })).exec()
-
-  if (todo && String(todo.userId) === String(user.id)) {
-    return todo
-  }
-
-  throw new NotFoundError('Todo not found')
-}
-
-async function getTodos(_, { input }, { user, models }) {
-  const todos = await models.Todo.find(transformQueryFilters({ ...input, userId: user.id })).exec()
-
-  return todos
-}
-
 export const todoResolvers = {
   Query: {
-    getTodos,
-    getSingleTodo
+    getTodos: getResource('Todo'),
+    getSingleTodo: getSingleResource('Todo')
   },
   Mutation: {
     createTodo,
     updateTodo,
-    deleteTodo: deleteResource('Todo', 'todoId')
+    deleteTodo: deleteResource('Todo')
   },
   Todo: {
     owner: getItemOwner

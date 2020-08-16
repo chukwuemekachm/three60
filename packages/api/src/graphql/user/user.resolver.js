@@ -62,6 +62,8 @@ export const userResolvers = {
   },
   User: {
     todos: getUserSubCollection('Todo'),
-    notes: getUserSubCollection('Note')
+    notes: getUserSubCollection('Note'),
+    linkFolders: getUserSubCollection('LinkFolder'),
+    links: getUserSubCollection('Link')
   }
 }

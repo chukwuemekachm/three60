@@ -41,7 +41,7 @@ export const noteTypeDefs = gql`
 
   extend type Mutation {
     createNote(input: CreateNoteInput!): Note!
-    updateNote(noteId: ID!, input: UpdateNoteInput!): Note!
-    deleteNote(todoId: ID!): ID!
+    updateNote(id: ID!, input: UpdateNoteInput!): Note!
+    deleteNote(id: ID!): ID!
   }
 `

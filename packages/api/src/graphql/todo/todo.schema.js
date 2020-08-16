@@ -76,12 +76,12 @@ export const todoTypeDefs = gql`
 
   extend type Query {
     getTodos(input: FetchTodosInput): [Todo]!
-    getSingleTodo(input: FetchSingleTodoInput): Todo
+    getSingleTodo(input: FetchSingleTodoInput): Todo!
   }
 
   extend type Mutation {
     createTodo(input: CreateTodoInput!): Todo!
-    updateTodo(todoId: ID!, input: UpdateTodoInput): Todo!
-    deleteTodo(todoId: ID!): ID!
+    updateTodo(id: ID!, input: UpdateTodoInput): Todo!
+    deleteTodo(id: ID!): ID!
   }
 `

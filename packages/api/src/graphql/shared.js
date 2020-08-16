@@ -59,13 +59,35 @@ export function transformQueryFilters(filters) {
   return queryOptions
 }
 
-export function deleteResource(modelKey, resourceId) {
+export function deleteResource(modelKey) {
   return async function deleteUserResource(_, args, { user, models }) {
-    const resource = await models[modelKey].findById(args[resourceId]).exec()
+    const resource = await models[modelKey].findById(args.id).exec()
 
     if (resource && String(resource.userId) === String(user.id)) {
-      await models[modelKey].deleteOne({ _id: resource.id })
-      return args[resourceId]
+      await models[modelKey].findOneAndRemove({ _id: resource.id })
+      return args.id
+    }
+
+    throw new NotFoundError(`${modelKey} not found`)
+  }
+}
+
+export function getResource(modelKey) {
+  return async function getItems(_, { input }, { user, models }) {
+    const todos = await models[modelKey]
+      .find(transformQueryFilters({ ...input, userId: user.id })).exec()
+
+    return todos
+  }
+}
+
+export function getSingleResource(modelKey) {
+  return async function getItem(_, { input }, { user, models }) {
+    const resource = await models[modelKey]
+      .findOne(transformQueryFilters({ ...input, userId: user.id })).exec()
+
+    if (resource && String(resource.userId) === String(user.id)) {
+      return resource
     }
 
     throw new NotFoundError(`${modelKey} not found`)
