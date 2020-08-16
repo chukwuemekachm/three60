@@ -1,0 +1,2 @@
+  
+web: lerna exec --scope api node build/index.js

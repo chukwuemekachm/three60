@@ -21,8 +21,9 @@ const graphqlServer = new ApolloServer({
     isProduction,
     models,
   }),
-  debug: !isProduction,
-  playground: !isProduction
+  debug: false,
+  playground: true,
+  introspection: true
 });
 
 export default graphqlServer

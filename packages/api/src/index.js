@@ -27,7 +27,7 @@ app.use((_, response, next) => {
 })
 
 // body parser and helmet middleware
-app.use(helmet(!isProduction && { contentSecurityPolicy: false }))
+app.use(helmet({ contentSecurityPolicy: false }))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
